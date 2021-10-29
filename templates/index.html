@@ -49,15 +49,6 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>10</td>
-                    <td style="color:red;">
-                        <i class="fas fa-circle"></i>
-                        20
-                    </td>
-                    <td>Check</td>
-                    <td>Check</td>
-                  </tr>
                 </tbody>
               </table>
         </div>
@@ -95,9 +86,15 @@
                     number.style.color = "green";
                 }
                 var photo = document.createElement("td");
-                photo.innerHTML = "Check";
-                var history = document.createElement("td"); 
-                history.innerHTML = "Check";
+                var aphoto = document.createElement("a");
+                aphoto.innerHTML = "Check";
+                aphoto.href = "/photo";
+                photo.appendChild(aphoto);
+                var history = document.createElement("td");
+                var ahistory = document.createElement("a"); 
+                ahistory.href = "/history";
+                ahistory.innerHTML = "Check";
+                history.appendChild(ahistory);
                 tr.appendChild(roomNumber);
                 tr.appendChild(number);
                 tr.appendChild(photo);

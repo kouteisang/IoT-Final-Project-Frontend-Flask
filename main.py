@@ -24,6 +24,14 @@ def get_data():
     res = json.dumps(list)
     return res
 
+@app.route("/photo")
+def photo():
+    return render_template('photo.html')
+
+@app.route("/history")
+def history():
+    return render_template('history.html')
+
 @app.route('/')
 def index():
     return render_template('index.html')
