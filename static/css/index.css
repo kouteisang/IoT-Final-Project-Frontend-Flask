@@ -95,7 +95,9 @@
     text-align: center;
     color: #fff;
 }
-
+.banner .table td i{
+    margin-right: 3px;
+}
 .banner .table td:nth-child(2){
     font-weight: bold;
 }

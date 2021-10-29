@@ -50,28 +50,13 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>1</td>
+                    <td>10</td>
                     <td style="color:red;">
                         <i class="fas fa-circle"></i>
                         20
                     </td>
                     <td>Check</td>
-                    <td>$1</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td style="color:green">
-                        <i class="fas fa-circle"></i>
-                        20
-                    </td>
                     <td>Check</td>
-                    <td>$2</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Item 2</td>
-                    <td>$2</td>
-                    <td>$2</td>
                   </tr>
                 </tbody>
               </table>
@@ -90,13 +75,37 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
     <script>
+        // get All room data
         axios({
-    method:'GET',
-    url:'/getData',
-}).then(response=>{
-    let data = response.data;
-    console.log(data)
-})
+            method:'GET',
+            url:'/getData',
+        }).then(response=>{
+            var data = response.data;
+            var tbody = document.querySelector(".banner-wrapper .banner tbody");
+            console.log(tbody);
+            for(var i = 0; i < data.length; i ++){
+                var tr = document.createElement("tr");
+                var roomNumber = document.createElement("td");
+                roomNumber.innerHTML = data[i].roomNumber;
+                var number = document.createElement("td");
+                number.innerHTML = "<i class='fas fa-circle'></i>"+data[i].number;
+                if(data[i].number >= 20){
+                    number.style.color = "red";
+                }else{
+                    number.style.color = "green";
+                }
+                var photo = document.createElement("td");
+                photo.innerHTML = "Check";
+                var history = document.createElement("td"); 
+                history.innerHTML = "Check";
+                tr.appendChild(roomNumber);
+                tr.appendChild(number);
+                tr.appendChild(photo);
+                tr.appendChild(history);
+                tbody.appendChild(tr);
+                console.log(data[i])
+            }
+        })
     </script>
 </body>
 </html>
