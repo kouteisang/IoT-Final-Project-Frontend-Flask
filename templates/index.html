@@ -3,44 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- import bootstrap5   -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
     rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
     crossorigin="anonymous">
-    <!-- import axios  -->
-    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <style>
-        .box1{
-            border: 1px solid red;
-            width: 100px;
-            height: 100px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+    <!-- import index.css -->
+    <link rel="stylesheet" href="../static/css/index.css">
+    <!-- import fa -->
+    <link rel="stylesheet" href="../static/fa/css/all.min.css">
+    <!-- import base.css -->
+    <link rel="stylesheet" href="../static/css/base.css">
+
 </head>
 <body>
-    <div class="container">
-        <h2 class="page-header">1</h2>
-        <button class="btn btn-primary">2</button>
-        <button class="btn btn-danger">3</button>
-        <button class="btn btn-info">4</button>
-        <div class="box1"></div>
+    <div class="topbar-wrapper">
+        <div class="topbar">
+            <i class="fas fa-envelope"></i>
+            <span>yijingpan@foxmail.com ｜ huangchengadam@gmail.com</span>
+        </div>
     </div>
+    <div class="middle-wrapper">
+        <div class="middle">
+            <h1 class="logo">
+                <a href="javascript:;" class="pony"></a>
+            </h1>
+            <!-- <img src="../static/img/7091635508858_.pic.jpg" alt=""> -->
+            <a href="javascript:;">
+                <span>Queen Chrysalis ｜ All by Yijing Pan & Cheng Huang</span>
+            </a>
+        </div>
+    </div>
+    <div class="banner-wrapper">
+        <div class="banner">
+            <table class="table table-borderless" >
+                <thead class="thead">
+                  <tr>
+                    <th>Room Number</th>
+                    <th>Number of Person</th>
+                    <th>Live Photo</th>
+                    <th>History Data</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td style="color:red;">
+                        <i class="fas fa-circle"></i>
+                        20
+                    </td>
+                    <td>Check</td>
+                    <td>$1</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td style="color:green">
+                        <i class="fas fa-circle"></i>
+                        20
+                    </td>
+                    <td>Check</td>
+                    <td>$2</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Item 2</td>
+                    <td>$2</td>
+                    <td>$2</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="footer-wrapper">
+        <div class="footer">
+            <h5>Queen Chrysalis ｜ Final Project</h5>
+            <span>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi sunt consequuntur, asperiores quod, voluptatem ducimus veritatis in facere voluptas quia fugit nihil consequatur blanditiis quam recusandae voluptatum unde molestiae voluptatibus! 
+            </span>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
     <script>
-        const btns = document.querySelectorAll("button");
-        console.log(btns.length)
-        for(var i = 0; i < btns.length; i ++){
-            btns[i].onclick = function () {
-                axios({
-                    method:'GET',
-                    url:'/test_demo',
-                    params:{
-                        id : btns.innerHTML
-                    }
-                }).then(response=>{
-                    console.log(response);
-                })
-            }
-        }
+        axios({
+    method:'GET',
+    url:'/getData',
+}).then(response=>{
+    let data = response.data;
+    console.log(data)
+})
     </script>
 </body>
 </html>

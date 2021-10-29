@@ -1,0 +1,134 @@
+.topbar-wrapper{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-image: linear-gradient(to right, #4935C5, #FA6D4B);
+}
+.topbar{
+    width: 80%;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+    font-size: 14px;
+}
+.topbar i{
+    color: #fff;
+    font-size: 14px;
+}
+
+.topbar span{
+    margin-left: 20px;
+    color: #fff;
+}
+
+.middle-wrapper{
+    margin: 30px 0px;
+    margin-bottom: 40px;
+    width: 100%;
+    height: 55px; 
+}
+
+.middle-wrapper .middle{
+    width: 80%;
+    height: 55px;
+    margin: 0 auto;
+    /* background-color: yellow; */
+    position: relative;
+}
+
+.middle-wrapper .middle .logo{
+    display: block;
+    width: 100px;
+    height: 55px;
+    background-color: yellow;
+    position: relative;
+}
+
+.middle-wrapper .middle .logo .pony{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100px;
+    height: 55px;
+    display: block;
+    /* background-color: red; */
+    background-image: url('../img/7091635508858_.pic.jpg');
+    background-size: contain;
+}
+
+.middle-wrapper .middle .logo .pony:hover{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100px;
+    height: 55px;
+    display: block;
+    /* background-color: red; */
+    background-image: url('../img/logo.jpg');
+    background-size: contain;
+}
+
+
+.middle-wrapper .middle a{
+    display: inline-block;
+    font-size: 15px;
+    position: absolute;
+    top: 35px;
+    left: 115px;
+}
+
+.banner-wrapper{
+    width: 100%;
+}
+
+.banner{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.banner .thead{
+    background-image: linear-gradient(to right, #FA6D4B, #4935C5);
+}
+
+.banner .table th,
+.banner .table td{
+    text-align: center;
+    color: #fff;
+}
+
+.banner .table td:nth-child(2){
+    font-weight: bold;
+}
+
+.banner .table i{
+    font-size: 10px;
+}
+
+.banner .table tr{
+    background-image: linear-gradient(to right, #FA6D4B, #4935C5);
+}
+
+.footer-wrapper{
+    margin-top: 40px;
+    width: 100%;
+    height: 150px;
+    /* background-color: yellow; */
+}
+
+.footer{
+    width: 80%;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.footer-wrapper .footer span{
+    margin-left: 40px;
+    margin-top: 10px;
+    display: inline-block;
+    width: 70%;
+    color: #68676D;
+}
+
+.footer-wrapper .footer span::first-letter{
+    font-size: 30px;
+}
