@@ -19,7 +19,7 @@ def test_demo():
 @app.route("/getData", methods=['GET'])
 def get_data():
     list = []
-    for i in range(4):
+    for i in range(10):
         list.append({'roomNumber':i,'number':i*10})
     res = json.dumps(list)
     print(res)
@@ -29,14 +29,7 @@ def get_data():
 def get_photo():
     roomNumber = int(request.args.get('roomNumber'))
     print(roomNumber)
-    if roomNumber == 1:
-        return '../static/img/logo.jpg'
-    elif roomNumber == 2:
-        return '../static/img/7091635508858_.pic.jpg'
-    return "OK"
-
-
-
+    return '../static/img/7091635508858_.pic.jpg'
 
 @app.route("/history")
 def history():
