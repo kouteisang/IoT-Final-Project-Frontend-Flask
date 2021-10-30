@@ -98,6 +98,7 @@
                 var tr = document.createElement("tr");
                 var roomNumber = document.createElement("td");
                 roomNumber.innerHTML = data[i].roomNumber;
+                var roomNumberParam = data[i].roomNumber;
                 var number = document.createElement("td");
                 number.innerHTML = "<i class='fas fa-circle'></i>"+data[i].number;
                 if(data[i].number >= 20){
@@ -108,7 +109,13 @@
                 var photo = document.createElement("td");
                 var aphoto = document.createElement("a");
                 aphoto.innerHTML = "Check";
-                aphoto.href = "/photo";
+                aphoto.href = "javascript:;";
+                //loop binding function event
+                (function (roomNumberParam) {
+                    aphoto.onclick = function(){
+                        popUpImage(roomNumberParam)
+                    }
+                })(roomNumberParam);
                 photo.appendChild(aphoto);
                 var history = document.createElement("td");
                 var ahistory = document.createElement("a"); 
@@ -120,10 +127,21 @@
                 tr.appendChild(photo);
                 tr.appendChild(history);
                 tbody.appendChild(tr);
-                console.log(data[i])
             }
         };
-        //refreshData function
+        //popUpImage 
+        function popUpImage(roomNumber){
+            axios({
+                method:'GET',
+                url:'/getPhoto',
+                params : {
+                    "roomNumber": roomNumber
+                }
+            }).then(response=>{
+                var data = response.data;
+                alert(data)
+            })
+        }
     </script>
 </body>
 </html>

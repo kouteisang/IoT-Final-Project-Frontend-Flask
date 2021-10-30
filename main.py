@@ -25,9 +25,13 @@ def get_data():
     print(res)
     return res
 
-@app.route("/photo")
-def photo():
-    return render_template('photo.html')
+@app.route("/getPhoto", methods=['GET'])
+def get_photo():
+    roomNumber = request.args.get('roomNumber')
+    return "test" + roomNumber
+
+
+
 
 @app.route("/history")
 def history():
