@@ -22,6 +22,7 @@ def get_data():
     for i in range(4):
         list.append({'roomNumber':i,'number':i*10})
     res = json.dumps(list)
+    print(res)
     return res
 
 @app.route("/photo")

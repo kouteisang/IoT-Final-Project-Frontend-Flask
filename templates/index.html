@@ -35,6 +35,7 @@
             <a href="javascript:;">
                 <span>Queen Chrysalis ｜ All by Yijing Pan & Cheng Huang</span>
             </a>
+            <button type="button" class="btn btn-primary" id="refresh">Refresh</button>
         </div>
     </div>
     <div class="banner-wrapper">
@@ -72,8 +73,27 @@
             url:'/getData',
         }).then(response=>{
             var data = response.data;
+            getTableData(data);
+        });
+        // refresh button
+        var refresh = document.getElementById("refresh");
+        refresh.addEventListener("click",()=>{
+                axios({
+                method:'GET',
+                url:'/getData',
+            }).then(response=>{
+                var data = response.data;
+                getTableData(data);
+            })
+        });
+        //getTableData function
+        function getTableData(data){
             var tbody = document.querySelector(".banner-wrapper .banner tbody");
-            console.log(tbody);
+            var trs = document.querySelectorAll(".banner-wrapper .banner tbody tr");
+            //reomove trs first
+            for(var i = 0; i < trs.length; i ++){
+                tbody.removeChild(trs[i]);
+            }
             for(var i = 0; i < data.length; i ++){
                 var tr = document.createElement("tr");
                 var roomNumber = document.createElement("td");
@@ -102,7 +122,8 @@
                 tbody.appendChild(tr);
                 console.log(data[i])
             }
-        })
+        };
+        //refreshData function
     </script>
 </body>
 </html>
