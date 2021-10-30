@@ -51,7 +51,11 @@
                 </thead>
                 <tbody>
                 </tbody>
-              </table>
+            </table>
+            <div class="window">
+                <img class="popimage" src="../static/img/logo.jpg" alt="">
+                <button id="close" type="button" class="btn btn-info">Close</button>
+            </div>
         </div>
     </div>
     <div class="footer-wrapper">
@@ -61,6 +65,9 @@
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi sunt consequuntur, asperiores quod, voluptatem ducimus veritatis in facere voluptas quia fugit nihil consequatur blanditiis quam recusandae voluptatum unde molestiae voluptatibus! 
             </span>
         </div>
+    </div>
+    <div class="window-banner">
+     
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -129,6 +136,9 @@
                 tbody.appendChild(tr);
             }
         };
+        var closeButton = document.getElementById("close");
+        var windowDiv = document.querySelector(".banner-wrapper .banner .window");
+        var popimg =  document.querySelector(".banner-wrapper .banner .window .popimage");
         //popUpImage 
         function popUpImage(roomNumber){
             axios({
@@ -138,9 +148,13 @@
                     "roomNumber": roomNumber
                 }
             }).then(response=>{
-                var data = response.data;
-                alert(data)
+                windowDiv.style.display = "block";
+                popimg.src = response.data
             })
+        }
+        //get Close button
+        closeButton.onclick = function(){
+            windowDiv.style.display = "none";
         }
     </script>
 </body>

@@ -27,8 +27,13 @@ def get_data():
 
 @app.route("/getPhoto", methods=['GET'])
 def get_photo():
-    roomNumber = request.args.get('roomNumber')
-    return "test" + roomNumber
+    roomNumber = int(request.args.get('roomNumber'))
+    print(roomNumber)
+    if roomNumber == 1:
+        return '../static/img/logo.jpg'
+    elif roomNumber == 2:
+        return '../static/img/7091635508858_.pic.jpg'
+    return "OK"
 
 
 
