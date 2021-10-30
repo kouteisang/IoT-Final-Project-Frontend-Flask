@@ -2,9 +2,158 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>History Data</title>
+    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- import bootstrap5   -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+    <!-- import index.css -->
+    <link rel="stylesheet" href="../static/css/index.css">
+    <!-- import fa -->
+    <link rel="stylesheet" href="../static/fa/css/all.min.css">
+    <!-- import base.css -->
+    <link rel="stylesheet" href="../static/css/base.css">
 </head>
 <body>
+    <div class="topbar-wrapper">
+        <div class="topbar">
+            <i class="fas fa-envelope"></i>
+            <span>yijingpan@foxmail.com ｜ huangchengadam@gmail.com</span>
+        </div>
+    </div>
+    <div class="middle-wrapper">
+        <div class="middle">
+            <h1 class="logo">
+                <a href="javascript:;" class="pony"></a>
+            </h1>
+            <!-- <img src="../static/img/7091635508858_.pic.jpg" alt=""> -->
+            <a href="javascript:;">
+                <span>Queen Chrysalis ｜ All by Yijing Pan & Cheng Huang</span>
+            </a>
+            
+        </div>
+    </div>
+    <div class="text-wrapper">
+        <div class="text">
+            We provided statistics information. Through this web page you can see the history data of the number of people's change in one month. Therefore it may helpful 
+            for you to know which room is more likely to be occupied.
+        </div>
+    </div>
+    <div class="line-wrapper">
+        <div class="line">
+        </div>
+    </div>
+    <div class="footer-wrapper">
+        <div class="footer">
+            <h5>Queen Chrysalis ｜ Final Project</h5>
+            <span>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi sunt consequuntur, asperiores quod, voluptatem ducimus veritatis in facere voluptas quia fugit nihil consequatur blanditiis quam recusandae voluptatum unde molestiae voluptatibus! 
+            </span>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script>
+        var strs = location.href.split('/');
+        var len = strs.length;
+        var roomNumber = strs[len-1];
+        var lineDiv = document.querySelector(".line-wrapper .line");
+        var myChart = echarts.init(lineDiv);
+        var option = {
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['6:00AM', '6:30AM', '7:00AM', '7:30AM', '8:00AM', '8:30AM', '9:00AM', '9:30AM', '10:00AM', '10:30AM',
+                       '11:00AM', '11:30AM', '12:00AM', '12:30PM', '13:00PM', '13:30PM', '14:00PM', '14:30PM', '15:00PM', '15:30PM',
+                       '16:00PM', '16:30PM', '17:00PM', '17:30PM', '18:00PM'
+                ]
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: 'Monday',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                },
+                {
+                    name: 'Tuesday',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [220, 182, 191, 234, 290, 330, 310]
+                },
+                {
+                    name: 'Wednesday',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [150, 232, 201, 154, 190, 330, 410]
+                },
+                {
+                    name: 'Thursday',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [320, 332, 301, 334, 390, 330, 320]
+                },
+                {
+                    name: 'Friday',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [820, 932, 901, 934, 1290, 1330, 1320]
+                }
+            ]
+            };
+        axios({
+            method:'GET',
+            params:{
+                'roomNumber': roomNumber
+            },
+            url:'/getHistoryData',
+        }).then(response=>{
+            var data = response.data;
+            console.log(data)
+            console.log(data[0].name)
+            console.log(data[0].historyData)
+            console.log(option.series[0].name + "1")
+            for(var i = 0; i <= 4; i ++){
+                var temp = new Array();
+                for(var j = 0; j < 26; j ++){
+                    temp[j] = parseInt(data[i].historyData[j]);
+                }
+                option.series[i].name = data[i].name;
+                option.series[i].type = 'line';
+                option.series[i].stack = 'Total';
+                option.series[i].data = temp;
+                console.log("temp = ", temp)
+            }
+            myChart.setOption(option); 
+        });
 
+    </script>
 </body>
-</html>
+</html>d

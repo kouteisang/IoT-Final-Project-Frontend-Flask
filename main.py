@@ -31,9 +31,31 @@ def get_photo():
     print(roomNumber)
     return '../static/img/7091635508858_.pic.jpg'
 
-@app.route("/history")
-def history():
+@app.route("/history/<roomNumberParam>")
+def history(roomNumberParam):
+    print(roomNumberParam)
     return render_template('history.html')
+
+@app.route("/getHistoryData", methods = ['GET'])
+def getHistoryData():
+    roomNumber = int(request.args.get('roomNumber'))
+    list = []
+    for i in range(5):
+        name = None
+        if i == 0:
+            name = 'Monday'
+        elif i == 1:
+            name = 'Tuesday'
+        elif i == 2:
+            name = 'Wednesday'
+        elif i == 3:
+            name = 'Thursday'
+        elif i == 4:
+            name = 'Friday'
+        data = [i+1] * 26
+        list.append({'name':name,'historyData':data})
+    return json.dumps(list)
+
 
 @app.route('/')
 def index():

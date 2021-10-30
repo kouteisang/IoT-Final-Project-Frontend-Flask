@@ -186,3 +186,32 @@
     font-size: 30px;
 }
 
+.text-wrapper{
+    width: 100%;
+    height: 70px; 
+}
+
+.text{
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    color: #68676D;
+}
+.text::first-letter{
+    font-size: 30px;
+    
+}
+
+.line-wrapper{
+    width: 100%;
+    /* background-color: yellow; */
+    height: 500px;
+    margin-top: 20px;
+}
+
+.line{
+    width: 80%;
+    /* background-color: red; */
+    height: 500px;
+    margin: 0 auto;
+}
