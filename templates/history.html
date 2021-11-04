@@ -83,10 +83,9 @@
     <script>
         var strs = location.href.split('/');
         var len = strs.length;
-        var roomNumber = strs[len-1];
+        var roomNumber = parseInt(strs[len-1]);
         var lineDiv = document.querySelector(".line-wrapper .line");
         var myChart = echarts.init(lineDiv);
-        
         option = {
             xAxis: {
                 type: 'category',
