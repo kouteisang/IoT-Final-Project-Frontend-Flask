@@ -160,6 +160,15 @@
         closeButton.onclick = function(){
             windowDiv.style.display = "none";
         }
+        setInterval(()=>{
+            axios({
+                method:'GET',
+                url:'/getData',
+            }).then(response=>{
+                var data = response.data;
+                getTableData(data);
+            })
+        }, 3000)
     </script>
 </body>
 </html>
