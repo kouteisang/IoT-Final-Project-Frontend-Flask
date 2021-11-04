@@ -17,9 +17,6 @@
     <link rel="stylesheet" href="../static/fa/css/all.min.css">
     <!-- import base.css -->
     <link rel="stylesheet" href="../static/css/base.css">
-    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
-  
 </head>
 <body>
     <div class="topbar-wrapper">
@@ -46,22 +43,6 @@
             for you to know which room is more likely to be occupied.
         </div>
     </div>
-    <div class="search-wrapper">
-        <div class="search">
-            <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-                  Choose Day
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Monday</a></li>
-                  <li><a class="dropdown-item" href="#">Tuesday</a></li>
-                  <li><a class="dropdown-item" href="#">Wednesday</a></li>
-                  <li><a class="dropdown-item" href="#">Thursday</a></li>
-                  <li><a class="dropdown-item" href="#">Friday</a></li>
-                </ul>
-              </div>
-        </div>
-    </div> 
     <div class="line-wrapper">
         <div class="line">
         </div>
@@ -79,91 +60,100 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
-    <script src="../static/js/ecStat.js"></script>
     <script>
         var strs = location.href.split('/');
         var len = strs.length;
         var roomNumber = strs[len-1];
         var lineDiv = document.querySelector(".line-wrapper .line");
         var myChart = echarts.init(lineDiv);
-        
-        option = {
+        var option = {
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                saveAsImage: {}
+                }
+            },
             xAxis: {
                 type: 'category',
-                data: ['6:00 6:30', '6:30 7:00', '7:00 7:30', '7:30 8:00', '8:00 8:30', '8:30 9:00', '9:00 9:30'
-                        , '9:30 10:00', '10:00 10:30', '10:30 11:00', '11:00 11:30', '11:30 12:00', '12:00 12:30', '12:30 13:00', '13:00 13:30', '13:30-14:00', 
-                        '14:00 14:30', '14:30 15:00', '15:00 15:30', '15:30 16:00','16:00 16:30', '16:30 17:00', '17:00 17:30','17:30 16:00']
+                boundaryGap: false,
+                data: ['6:00AM', '6:30AM', '7:00AM', '7:30AM', '8:00AM', '8:30AM', '9:00AM', '9:30AM', '10:00AM', '10:30AM',
+                       '11:00AM', '11:30AM', '12:00AM', '12:30PM', '13:00PM', '13:30PM', '14:00PM', '14:30PM', '15:00PM', '15:30PM',
+                       '16:00PM', '16:30PM', '17:00PM', '17:30PM', '18:00PM'
+                ]
             },
             yAxis: {
                 type: 'value'
             },
             series: [
                 {
-                data: [120, 200, 150, 80, 70, 110, 130,111,41,231,143,123,100,100,100,100,100,100,100,100,100,100,100,100],
-                type: 'bar',
-                barWidth: '99.3%',
+                    name: 'Monday',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                },
+                {
+                    name: 'Tuesday',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [220, 182, 191, 234, 290, 330, 310]
+                },
+                {
+                    name: 'Wednesday',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [150, 232, 201, 154, 190, 330, 410]
+                },
+                {
+                    name: 'Thursday',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [320, 332, 301, 334, 390, 330, 320]
+                },
+                {
+                    name: 'Friday',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [820, 932, 901, 934, 1290, 1330, 1320]
                 }
             ]
             };
-        myChart.setOption(option); 
-        let dropdowns = document.getElementsByClassName('dropdown-item');
-        for(let i = 0; i < dropdowns.length; i ++){
-            dropdowns[i].addEventListener('click',()=>{
-                axios({
-                    method:'GET',
-                    params:{
-                        'roomNumber': roomNumber
-                    },
-                    url:'/getHistoryData',
-                }).then(response=>{
-                    var data = response.data;
-                    let index = 0;
-                    switch(dropdowns[i].innerHTML){
-                        case 'Monday':
-                            index = 0;
-                            break;
-                        case 'Tuesday':
-                            index = 1;
-                            break;
-                        case 'Wednesday':
-                            index = 2;
-                            break;
-                        case 'Thursday':
-                            index = 3;
-                            break;
-                        case 'Friday':
-                            index = 4;
-                            break;            
-                    }
-                    var temp = new Array();
-                    for(let j = 0; j < 26; j ++){
-                        temp[j] = parseInt(data[index].historyData[j]);
-                    }
-                    option.series[0].data = temp;
-                    console.log("temp = ", temp)
-                    myChart.setOption(option); 
-                });
-            })
-        }
-    
-    
         axios({
-                method:'GET',
-                params:{
-                    'roomNumber': roomNumber
-                },
-                url:'/getHistoryData',
-            }).then(response=>{
-                var data = response.data;
-                let index = 0;
+            method:'GET',
+            params:{
+                'roomNumber': roomNumber
+            },
+            url:'/getHistoryData',
+        }).then(response=>{
+            var data = response.data;
+            console.log(data)
+            console.log(data[0].name)
+            console.log(data[0].historyData)
+            console.log(option.series[0].name + "1")
+            for(var i = 0; i <= 4; i ++){
                 var temp = new Array();
-                for(let j = 0; j < 26; j ++){
-                    temp[j] = parseInt(data[index].historyData[j]);
+                for(var j = 0; j < 26; j ++){
+                    temp[j] = parseInt(data[i].historyData[j]);
                 }
-                option.series[0].data = temp;
+                option.series[i].name = data[i].name;
+                option.series[i].type = 'line';
+                option.series[i].stack = 'Total';
+                option.series[i].data = temp;
                 console.log("temp = ", temp)
-                myChart.setOption(option); 
-            });
+            }
+            myChart.setOption(option); 
+        });
+
     </script>
 </body>
 </html>

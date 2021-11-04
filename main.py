@@ -52,7 +52,7 @@ def getHistoryData():
             name = 'Thursday'
         elif i == 4:
             name = 'Friday'
-        data = [i+1] * 26
+        data = [i+1] * 24
         list.append({'name':name,'historyData':data})
     return json.dumps(list)
 
