@@ -29,6 +29,7 @@ def get_data():
 def get_photo():
     roomNumber = int(request.args.get('roomNumber'))
     print(roomNumber)
+
     return '../static/img/7091635508858_.pic.jpg'
 
 @app.route("/history/<roomNumberParam>")

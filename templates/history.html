@@ -37,7 +37,9 @@
             <a href="javascript:;">
                 <span>Queen Chrysalis ｜ All by Yijing Pan & Cheng Huang</span>
             </a>
-            
+            <button id = 'backToMainPage' type="button" class="btn btn-danger">
+               Back To Main Page
+            </button>
         </div>
     </div>
     <div class="text-wrapper">
@@ -163,6 +165,11 @@
                 console.log("temp = ", temp)
                 myChart.setOption(option); 
             });
+        let backToMainPage = document.getElementById("backToMainPage");
+            backToMainPage.onclick = function () {
+                alert("11");
+                window.location.href="/";
+        }
     </script>
 </body>
 </html>
