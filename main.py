@@ -1,13 +1,54 @@
 import json
 import re
-
-from flask import Flask, render_template, request
+from flask_login import current_user, login_required, LoginManager, UserMixin, login_user
+from flask import Flask, render_template, request, redirect, url_for
 from flask_cors import CORS
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
-
+app.secret_key = 'abc'  # 设置表单交互密钥
 CORS(app, resources={r'/*': {'origins': '*'}})
+login_manager = LoginManager()
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
+login_manager.login_message = 'Access denied.'
+login_manager.init_app(app)
+
+
+class User(UserMixin):
+    pass
+
+users = [
+    {'id':'1', 'username': 'test', 'password': 'test'},
+]
+def query_user(user_id):
+    for user in users:
+        if user_id == user['id']:
+            return user
+
+@login_manager.user_loader
+def load_user(user_id):
+    if query_user(user_id) is not None:
+        curr_user = User()
+        curr_user.id = user_id
+        return curr_user
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        user_id = request.form.get('userid')
+        user = query_user(user_id)
+        if user is not None and request.form['password'] == user['password']:
+            curr_user = User()
+            curr_user.id = user_id
+            # 通过Flask-Login的login_user方法登录用户
+            login_user(curr_user)
+            return redirect(url_for('index'))
+
+    # GET 请求
+    return render_template('login.html')
+
 
 @app.route("/test_demo", methods=['GET'])
 def test_demo():
@@ -32,6 +73,7 @@ def get_photo():
 
     return '../static/img/7091635508858_.pic.jpg'
 
+@login_required
 @app.route("/photo/<roomNumberParam>")
 def testPhoto(roomNumberParam):
 
@@ -63,6 +105,9 @@ def getHistoryData():
         list.append({'name':name,'historyData':data})
     return json.dumps(list)
 
+@app.route("/loginPage")
+def loginPage():
+    return render_template('login.html')
 
 @app.route('/')
 def index():
