@@ -35,6 +35,7 @@
             <a href="javascript:;">
                 <span>Queen Chrysalis ｜ All by Yijing Pan & Cheng Huang</span>
             </a>
+            <button type="button" class="btn btn-danger" id="login">Login To Check Live Photo</button>
             <button type="button" class="btn btn-primary" id="refresh">Refresh</button>
         </div>
     </div>
@@ -53,7 +54,7 @@
                 </tbody>
             </table>
             <div class="window">
-                <img class="popimage" src="../static/img/logo.jpg" alt="">
+                <img class="popimage" src="../../../Project_front/IoT-Final-Project-Frontend-Flask/static/img/logo.jpg" alt="">
                 <button id="close" type="button" class="btn btn-info">Close</button>
                 <span class="info">
                     <i class="fas fa-home"></i>
@@ -65,11 +66,11 @@
         <div class="footer">
             <h5>Queen Chrysalis ｜ Final Project</h5>
             <span>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi sunt consequuntur, asperiores quod, voluptatem ducimus veritatis in facere voluptas quia fugit nihil consequatur blanditiis quam recusandae voluptatum unde molestiae voluptatibus! 
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi sunt consequuntur, asperiores quod, voluptatem ducimus veritatis in facere voluptas quia fugit nihil consequatur blanditiis quam recusandae voluptatum unde molestiae voluptatibus!
             </span>
         </div>
     </div>
-     
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -103,7 +104,7 @@
             for(var i = 0; i < trs.length; i ++){
                 tbody.removeChild(trs[i]);
             }
-            for(var i = 0; i < data.length; i ++){
+            for(let i = 0; i < data.length; i ++){
                 var tr = document.createElement("tr");
                 var roomNumber = document.createElement("td");
                 roomNumber.innerHTML = data[i].roomNumber;
@@ -118,13 +119,13 @@
                 var photo = document.createElement("td");
                 var aphoto = document.createElement("a");
                 aphoto.innerHTML = "Check";
-                aphoto.href = "javascript:;";
+                aphoto.href = "/photo/"+roomNumberParam;
                 //loop binding function event
-                (function (roomNumberParam) {
-                    aphoto.onclick = function(){
-                        popUpImage(roomNumberParam)
-                    }
-                })(roomNumberParam);
+                // (function (roomNumberParam) {
+                //     aphoto.onclick = function(){
+                //         popUpImage(roomNumberParam)
+                //     }
+                // })(roomNumberParam);
                 photo.appendChild(aphoto);
                 var history = document.createElement("td");
                 var ahistory = document.createElement("a"); 

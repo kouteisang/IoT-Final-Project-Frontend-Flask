@@ -32,6 +32,12 @@ def get_photo():
 
     return '../static/img/7091635508858_.pic.jpg'
 
+@app.route("/photo/<roomNumberParam>")
+def testPhoto(roomNumberParam):
+
+    # here current_photo is a bytes-like object, just use you read image with "rb"
+    return render_template("imgTest.html")
+
 @app.route("/history/<roomNumberParam>")
 def history(roomNumberParam):
     print(roomNumberParam)
@@ -63,4 +69,4 @@ def index():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=8001, debug=False)
+    app.run(host='127.0.0.1', port=8080, debug=False)
